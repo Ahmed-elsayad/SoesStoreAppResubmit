@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+    >
+    <!-- binding the views with the data using data binding -->
+
+    <!-- define the viewModel in xml using data binding to
+    increase the productivity of developers as it reduces boilerplate codes  -->
+
+    <data>
+        <variable
+            name = "shoeViewModel"
+            type = "com.udacity.shoesstoreapp.ShoeViewModel"
+            />
+
+        <variable name="shoe"
+            type = "com.udacity.shoesstoreapp.models.Shoe"
+            />
+
+    </data>
+
+
+    <FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetialFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/shoeName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="160dp"
+            android:hint="Add Shoe name"
+            android:text="@{shoe.name}"
+            app:layout_constraintBottom_toTopOf="@+id/shoeSize"
+            app:layout_constraintStart_toStartOf="@+id/shoeSize"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/shoeSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="Add shoe size"
+            android:text="@{shoe.size}"
+            app:layout_constraintBottom_toTopOf="@+id/shoeDescription"
+            app:layout_constraintStart_toStartOf="@+id/shoeDescription"
+            app:layout_constraintTop_toBottomOf="@+id/shoeName" />
+
+        <EditText
+            android:id="@+id/shoeCompany"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="Add shoe company"
+            android:text="@{shoe.company}"
+            app:layout_constraintBottom_toTopOf="@+id/addItem"
+            app:layout_constraintTop_toBottomOf="@+id/shoeDescription"
+            tools:layout_editor_absoluteX="124dp" />
+
+        <EditText
+            android:id="@+id/shoeDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:hint="add shoe description"
+            android:text="@{shoe.description}"
+            app:layout_constraintBottom_toTopOf="@+id/shoeCompany"
+            app:layout_constraintStart_toStartOf="@+id/shoeCompany"
+            app:layout_constraintTop_toBottomOf="@+id/shoeSize" />
+
+        <Button
+            android:id="@+id/addItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+
+            android:layout_marginBottom="196dp"
+            android:text="addItem"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shoeCompany" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
+
+</layout>
