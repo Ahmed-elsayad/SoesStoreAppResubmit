@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.udacity.shoesstoreapp.R
 import com.udacity.shoesstoreapp.ShoeViewModel
 import com.udacity.shoesstoreapp.databinding.FragmentShoeListBinding
+import com.udacity.shoesstoreapp.databinding.ShoeItemBinding
 
 
 class ShoeListFragment : Fragment() {
@@ -32,6 +33,22 @@ class ShoeListFragment : Fragment() {
    //  we need to tell Android that our shoesListFragment has a menu
         setHasOptionsMenu(true)
 
+        viewModel.shoeData.
+        forEach {
+            val itemBinding: ShoeItemBinding = ShoeItemBinding.inflate(layoutInflater, container,false)
+
+//            val shoeItem = LayoutInflater.from(context).inflate(R.layout.shoe_item, binding.linearLayout, false)
+            itemBinding.shoeName.text = it.name
+            itemBinding.shoeSize.text = it.size
+            itemBinding.shoeCompany.text = it.company
+            itemBinding.shoeDescription.text = it.description
+            binding.linearLayout.addView(itemBinding.root)
+
+
+
+        }
+
+
         return binding.root
     }
 
@@ -42,19 +59,6 @@ class ShoeListFragment : Fragment() {
             findNavController().navigate(action)
         }
           // mapping the the views in shoe item with data provided by the k=live data
-        viewModel.shoesList.observe( viewLifecycleOwner){
-            it?.let {
-                it.forEach {
-                    val shoeItem = LayoutInflater.from(context).inflate(R.layout.shoe_item, binding.linearLayout, false)
-                    shoeItem.findViewById<TextView>(R.id.shoeName).text = it.name
-                    shoeItem.findViewById<TextView>(R.id.shoeSize).text = it.size
-                    shoeItem.findViewById<TextView>(R.id.shoeCompany).text = it.company
-                    shoeItem.findViewById<TextView>(R.id.shoeDescription).text = it.description
-                    binding.linearLayout.addView(shoeItem)
-
-                }
-            }
-        }
 
 
     }

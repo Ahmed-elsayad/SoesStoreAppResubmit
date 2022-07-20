@@ -31,8 +31,8 @@ class DetialFragment : Fragment() {
         // Inflate the layout for this fragment
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false  )
-        binding.shoeViewModel = viewModel
-        binding.shoe = viewModel.shoeItem
+//        binding.shoeViewModel = viewModel
+//        binding.shoe = viewModel.shoeItem
         return binding.root
     }
 
@@ -40,17 +40,24 @@ class DetialFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                // update our data source and navigate pack to shoe List fragment
-                binding.addItem.setOnClickListener {
-                    viewModel.addShoe()
-                    val action = DetialFragmentDirections.actionDetailFragmentToShoeListFragment2()
-                    findNavController().navigate(action)
-                }
+
+            binding.viewModel = viewModel
+            // update our data source and navigate pack to shoe List fragment
+            binding.addItem.setOnClickListener {
+                viewModel.saveShoeData()
+                val action = DetialFragmentDirections.actionDetailFragmentToShoeListFragment2()
+                findNavController().navigate(action)
+
+        }
+
+        binding.cancel.setOnClickListener {
+            val action = DetialFragmentDirections.actionDetailFragmentToShoeListFragment2()
+            findNavController().navigate(action)
+
+        }
+
             }
         }
-    }
 
-}
+
 
